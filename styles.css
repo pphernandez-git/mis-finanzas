@@ -54,6 +54,10 @@ body {
   line-height: 1;
 }
 
+.month-btn:disabled {
+  opacity: 0.3;
+}
+
 #app {
   padding: 8px 16px 100px;
   max-width: 520px;
@@ -62,33 +66,50 @@ body {
 
 .view.hidden { display: none; }
 
-.accounts-row {
+.accounts-col {
   display: flex;
+  flex-direction: column;
   gap: 10px;
-  overflow-x: auto;
-  padding: 6px 2px 12px;
-  -webkit-overflow-scrolling: touch;
+  padding: 6px 0 12px;
 }
 
 .account-chip {
-  flex: 0 0 auto;
-  min-width: 130px;
   background: var(--bg-card);
   border-radius: 14px;
   padding: 12px 14px;
   border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
 }
 
+.account-chip .acc-info { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+
 .account-chip .acc-name {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--text-dim);
-  margin-bottom: 6px;
 }
 
 .account-chip .acc-balance {
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 700;
+  white-space: nowrap;
 }
+
+.acc-due {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 999px;
+  margin-top: 2px;
+  width: fit-content;
+}
+
+.acc-due.ok { background: rgba(56,189,248,0.15); color: var(--accent); }
+.acc-due.warn { background: rgba(250,204,21,0.15); color: #facc15; }
+.acc-due.danger { background: rgba(248,113,113,0.15); color: var(--red); }
 
 .card {
   background: var(--bg-card);
@@ -119,6 +140,42 @@ body {
   font-weight: 600;
   margin-bottom: 12px;
   color: var(--text-dim);
+}
+
+.card-hint {
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.4;
+}
+
+.saldo-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+
+.saldo-item .saldo-name {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.saldo-item label {
+  display: block;
+  font-size: 12px;
+  color: var(--text-dim);
+  margin: 8px 0 4px;
+}
+
+.saldo-item input {
+  width: 100%;
+  background: #0d1526;
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 15px;
 }
 
 .category-list, .category-manage-list {
@@ -189,7 +246,7 @@ body {
 .mov-item .mov-cat { font-weight: 600; font-size: 14px; }
 .mov-item .mov-meta { font-size: 12px; color: var(--text-dim); }
 .mov-item .mov-amount { font-weight: 700; font-size: 15px; }
-.mov-amount.gasto { color: var(--red); }
+.mov-amount.pago { color: var(--red); }
 .mov-amount.ingreso { color: var(--green); }
 
 .month-group-label {

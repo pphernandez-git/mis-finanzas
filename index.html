@@ -24,11 +24,11 @@
 
   <!-- RESUMEN -->
   <section class="view" id="view-resumen">
-    <div class="accounts-row" id="accountsRow"></div>
+    <div class="accounts-col" id="accountsRow"></div>
 
-    <div class="card highlight" id="totalGastadoCard">
-      <div class="card-label">Gastado este mes</div>
-      <div class="card-value" id="totalGastadoMes">$0</div>
+    <div class="card highlight" id="totalPagadoCard">
+      <div class="card-label">Pagado este mes</div>
+      <div class="card-value" id="totalPagadoMes">$0</div>
     </div>
 
     <div class="card">
@@ -46,6 +46,15 @@
   <section class="view hidden" id="view-movimientos">
     <button class="add-btn" id="addMovBtn">+ Nuevo movimiento</button>
     <div id="movList" class="mov-list"></div>
+  </section>
+
+  <!-- SALDO INICIAL -->
+  <section class="view hidden" id="view-saldoinicial">
+    <div class="card">
+      <div class="card-title">Saldo inicial de <span id="saldoMesLabel">este mes</span></div>
+      <div class="card-hint">Actualiza esta base a principio de mes según tus cartolas. En tarjetas también puedes fijar la fecha límite de pago.</div>
+    </div>
+    <div id="saldoInicialList" class="account-list"></div>
   </section>
 
   <!-- CUENTAS -->
@@ -67,13 +76,16 @@
     <span class="nav-icon">◆</span><span>Resumen</span>
   </button>
   <button class="nav-btn" data-view="movimientos">
-    <span class="nav-icon">≡</span><span>Movimientos</span>
+    <span class="nav-icon">≡</span><span>Movs.</span>
+  </button>
+  <button class="nav-btn" data-view="saldoinicial">
+    <span class="nav-icon">⟲</span><span>Saldo</span>
   </button>
   <button class="nav-btn" data-view="cuentas">
     <span class="nav-icon">▢</span><span>Cuentas</span>
   </button>
   <button class="nav-btn" data-view="categorias">
-    <span class="nav-icon">●</span><span>Categorías</span>
+    <span class="nav-icon">●</span><span>Categ.</span>
   </button>
 </nav>
 
@@ -87,7 +99,7 @@
     <form id="movForm">
       <label>Tipo</label>
       <div class="segmented" id="movTypeSeg">
-        <button type="button" class="seg-btn active" data-type="gasto">Gasto</button>
+        <button type="button" class="seg-btn active" data-type="pago">Pago</button>
         <button type="button" class="seg-btn" data-type="ingreso">Ingreso</button>
       </div>
 
@@ -104,7 +116,7 @@
       <input type="number" id="movAmount" inputmode="decimal" min="0" step="1" required placeholder="0">
 
       <label for="movNote">Nota (opcional)</label>
-      <input type="text" id="movNote" placeholder="Ej: Supermercado">
+      <input type="text" id="movNote" placeholder="Ej: Transferencia supermercado">
 
       <input type="hidden" id="movId">
       <div class="modal-actions">
@@ -134,9 +146,6 @@
         <option value="ahorro">Ahorro</option>
         <option value="otro">Otro</option>
       </select>
-
-      <label for="accInitial">Saldo inicial (CLP)</label>
-      <input type="number" id="accInitial" inputmode="decimal" step="1" required placeholder="0">
 
       <input type="hidden" id="accId">
       <div class="modal-actions">
